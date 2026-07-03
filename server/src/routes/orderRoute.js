@@ -17,7 +17,9 @@ const { requireSignIn } = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
-
+router.get("/test", (req, res) => {
+  res.json({ message: "Order route working" });
+});
 router.post("/agentSelect", requireSignIn, placeOrder);        
 router.get("/userOrders", requireSignIn, getOrdersForUser); 
 router.patch("/update-location/:id", requireSignIn, updateLocation);

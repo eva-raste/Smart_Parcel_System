@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import api from "../api";
+import api from "../../api";
 const FindOptimalPath = () => {
   const mapContainerRef = useRef();
   const mapRef = useRef();

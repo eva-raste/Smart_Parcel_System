@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { io } from "socket.io-client";
-import api from "../api";
+import api from "../../api";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN; 
 
 const TrackOrder = () => {

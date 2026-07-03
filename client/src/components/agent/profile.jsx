@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import api from "../api";
+import api from "../../api";
 const CarrierProfile = () => {
   const [agent, setAgent] = useState(null);
   const [formData, setFormData] = useState({ name: "", phoneNo: "", city: "", email: "" });

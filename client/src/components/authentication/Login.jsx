@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import api from "../api";
+import api from "../../api";
 export default function Login() {
   const [formData, setFormData] = useState({
     email: '',

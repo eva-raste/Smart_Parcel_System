@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import api from "../api";
+import api from "../../api";
 const AgentDashboard = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);

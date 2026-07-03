@@ -14,7 +14,7 @@ import AgentDashboard from './components/agent/AgentDashboard';
 import FindOptimalPath from './components/agent/FindOptimalPath';
 import AgentHistory from './components/agent/AgentHistory';
 import TrackOrder from './components/user/TrackOrder';
-import Home from './components/home/Home';
+import Home from './components/home/home';
 import Layout from './components/layout/layout';
 import ProtectedRoute from './components/layout/protectedRoute';
 function App() {

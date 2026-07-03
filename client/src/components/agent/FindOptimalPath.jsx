@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-
+import api from "../api";
 const FindOptimalPath = () => {
   const mapContainerRef = useRef();
   const mapRef = useRef();
@@ -26,7 +26,7 @@ const FindOptimalPath = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get(
+        const res = await api.get(
           `${import.meta.env.VITE_API_URL}/api/auth/agent/allowedCities`,
           {
             headers: {
@@ -55,7 +55,7 @@ const FindOptimalPath = () => {
       if (!token) return navigate("/login");
 
       try {
-        const res = await axios.get(
+        const res = await api.get(
           `${import.meta.env.VITE_API_URL}/api/profile/agent`,
           {
             headers: {
@@ -156,7 +156,7 @@ const FindOptimalPath = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/api/orders/findpath`,
         {
           source,

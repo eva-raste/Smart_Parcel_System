@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-
+import api from "../api";
 export default function Signup() {
   const [formData, setFormData] = useState({
     name: '',
@@ -41,7 +41,7 @@ export default function Signup() {
     try {
       let res;
       if (formData.role === 'user') {
-            res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/user/signup`, {
+            res = await api.post(`${import.meta.env.VITE_API_URL}/api/auth/user/signup`, {
             name: formData.name,
             email: formData.email,
             password: formData.password,
@@ -49,7 +49,7 @@ export default function Signup() {
             city: formData.city || undefined   
       });
 } else {
-        res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/agent/signup`, {
+        res = await api.post(`${import.meta.env.VITE_API_URL}/api/auth/agent/signup`, {
           name: formData.name,
           email: formData.email,
           password: formData.password,

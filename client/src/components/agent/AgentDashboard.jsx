@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import api from "../api";
 const AgentDashboard = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
@@ -19,7 +19,7 @@ const AgentDashboard = () => {
         return;
       }
 
-      const response = await axios.get("/api/orders/agent-orders", {
+      const response = await api.get("/api/orders/agent-orders", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -45,7 +45,7 @@ const AgentDashboard = () => {
   const handleAccept = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(
+      await api.put(
         `/api/orders/${id}/accept`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
@@ -61,7 +61,7 @@ const AgentDashboard = () => {
   try {
     const token = localStorage.getItem("token");
 
-    await axios.patch(
+    await api.patch(
       `/api/orders/reject/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }

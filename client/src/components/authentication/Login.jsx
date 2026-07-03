@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-
+import api from "../api";
 export default function Login() {
   const [formData, setFormData] = useState({
     email: '',
@@ -22,7 +22,7 @@ export default function Login() {
         : `${import.meta.env.VITE_API_URL}/api/auth/agent/login`;
 
     try {
-      const res = await axios.post(loginUrl, { email, password });
+      const res = await api.post(loginUrl, { email, password });
 
       if (res.data.status === false) {
         throw new Error('Invalid credentials');

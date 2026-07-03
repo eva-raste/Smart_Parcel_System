@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
+import api from "../api";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({ name: "", phone: "", address: "", email: "" });
@@ -15,7 +15,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       if (!token) return navigate("/login");
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/profile/user`, {
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/api/profile/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data.user);
@@ -38,7 +38,7 @@ const Profile = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await axios.put(
+      const res = await api.put(
         `${import.meta.env.VITE_API_URL}/api/profile/user`,
         { name: formData.name, phone: formData.phone, address: formData.address },
         { headers: { Authorization: `Bearer ${token}` } }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
+import api from "../api";
 const CarrierProfile = () => {
   const [agent, setAgent] = useState(null);
   const [formData, setFormData] = useState({ name: "", phoneNo: "", city: "", email: "" });
@@ -16,7 +16,7 @@ const CarrierProfile = () => {
       if (!token) return navigate("/login");
 
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/profile/agent`, {
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/api/profile/agent`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -40,7 +40,7 @@ const CarrierProfile = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await axios.put(
+      const res = await api.put(
         `${import.meta.env.VITE_API_URL}/api/profile/agent`,
         { name: formData.name, phoneNo: formData.phoneNo, city: formData.city },
         { headers: { Authorization: `Bearer ${token}` } }

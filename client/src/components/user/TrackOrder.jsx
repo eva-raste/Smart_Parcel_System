@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { io } from "socket.io-client";
-
+import api from "../api";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN; 
 
 const TrackOrder = () => {
@@ -48,7 +48,7 @@ const TrackOrder = () => {
         return;
       }
 
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders/userOrders`, {
+      const res = await api.get(`${import.meta.env.VITE_API_URL}/api/orders/userOrders`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -144,7 +144,7 @@ const updateMarker = async (cityName) => {
       const token = localStorage.getItem("token");
       const calculatedAmount = order.weight * 100;
 
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/api/orders/create-order`,
         { orderId: id, amount: calculatedAmount },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -159,7 +159,7 @@ const updateMarker = async (cityName) => {
         description: "Order Payment",
         order_id: orderId,
         handler: async function (response) {
-          await axios.post(
+          await api.post(
             `${import.meta.env.VITE_API_URL}/api/orders/verify-payment`,
             {
               razorpay_order_id: response.razorpay_order_id,

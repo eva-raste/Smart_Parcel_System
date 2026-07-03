@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-
+import api from "../api";
 export default function AgentSelect() {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
@@ -14,7 +14,7 @@ export default function AgentSelect() {
   useEffect(() => {
     async function fetchCities() {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/agent/allowedCities`);
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/api/auth/agent/allowedCities`);
         if (res.data && res.data.cities) {
           setCities(res.data.cities);
         }
@@ -35,7 +35,7 @@ export default function AgentSelect() {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post(
+      const res = await api.post(
         `${import.meta.env.VITE_API_URL}/api/orders/agentSelect`,
         {
           from: fromCity,

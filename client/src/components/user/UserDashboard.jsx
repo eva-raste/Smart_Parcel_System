@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-
+import api from "../api";
 const UserDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ const UserDashboard = () => {
           return;
         }
 
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders/userOrders`, {
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/api/orders/userOrders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

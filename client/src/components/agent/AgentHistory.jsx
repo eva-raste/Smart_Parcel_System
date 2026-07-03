@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import api from "../api";
 const AgentHistory = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
@@ -17,7 +17,7 @@ const AgentHistory = () => {
         return;
       }
 
-      const response = await axios.get("/api/orders/agent-history", {
+      const response = await api.get("/api/orders/agent-history", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -47,7 +47,7 @@ const AgentHistory = () => {
       setUpdating(orderId);
       const token = localStorage.getItem("token");
 
-      await axios.patch(
+      await api.patch(
         `/api/orders/update-location/${orderId}`,
         { currlocation: newLocation },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -71,7 +71,7 @@ const AgentHistory = () => {
 
     const token = localStorage.getItem("token");
 
-    await axios.patch(
+    await api.patch(
       `/api/orders/mark-delivered/${order._id}`,
       { status: "Delivered" },
       { headers: { Authorization: `Bearer ${token}` } }

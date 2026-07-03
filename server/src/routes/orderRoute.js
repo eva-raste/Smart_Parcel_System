@@ -21,7 +21,10 @@ const router = express.Router();
 router.post("/agentSelect", requireSignIn, placeOrder);        
 router.get("/userOrders", requireSignIn, getOrdersForUser); 
 router.patch("/update-location/:id", requireSignIn, updateLocation);
-router.get("/agent-orders", requireSignIn, getOrdersForAgent);  
+router.get("/agent-orders", requireSignIn, (req, res, next) => {
+    console.log("====== AGENT ORDERS ROUTE HIT ======");
+    next();
+}, getOrdersForAgent);
 router.put("/:id/accept", requireSignIn, orderAccept);        
 router.patch("/reject/:id", requireSignIn, rejectOrder);  
 router.get("/agent-history", requireSignIn, agentHistory);      
